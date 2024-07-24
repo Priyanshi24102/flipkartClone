@@ -1,13 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Card() {
+function Card({item}) {
+    const navigate=useNavigate();
+
+  const handleClick=()=>{
+    navigate("/Product", { state: {  item: item } });
+  }
   return (
-    <div className='card-box'>
+    <div className='card-box' onClick={handleClick}>
         <div className="card-imagewrapper">
-            <img src="https://rukminim2.flixcart.com/image/210/210/l58iaa80/headphone/k/z/m/nord-buds-ce-oneplus-original-imagfyk4hyvgg6ze.jpeg?q=80" alt="" />
+            <img src={item.image} alt="" />
         </div>
         <div className="card-textwrapper">
-            <span>Best Truewireless Headph...</span>
+            <span>{`${item.title.slice(0,20)}...`}</span>
             <span className='bold'>Grab Now</span>
         </div>
     </div>
